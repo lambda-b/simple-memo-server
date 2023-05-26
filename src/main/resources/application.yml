@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=appdb;encrypt=false
+    username: sa
+    password: PassW0rd
+
+mybatis:
+  config-location: classpath:/mybatis-config.xml
