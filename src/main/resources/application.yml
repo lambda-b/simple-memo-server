@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=appdb;encrypt=false
-    username: sa
+    url: jdbc:mysql://root@localhost:3306/appdb
+    username: root
     password: PassW0rd
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
   config-location: classpath:/mybatis-config.xml
