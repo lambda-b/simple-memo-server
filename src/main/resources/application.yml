@@ -6,3 +6,5 @@ spring:
 
 mybatis:
   config-location: classpath:/mybatis-config.xml
+  type-aliases-package: com.web.memo.dao.entity
+  type-handlers-package: com.web.memo.dao.typehandler

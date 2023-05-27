@@ -1,5 +1,7 @@
 package com.web.memo.dao.entity;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -24,5 +26,8 @@ public class MemoEntity {
 
 	/** 内容 */
 	private String content;
+
+	/** 更新時刻 */
+	private LocalDateTime updateTimestamp;
 
 }
