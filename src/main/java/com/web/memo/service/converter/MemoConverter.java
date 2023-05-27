@@ -23,7 +23,6 @@ public final class MemoConverter {
 	public static Memo toMemo(final MemoEntity entity) {
 		return Memo.builder()
 				.memoId(entity.getMemoId())
-				.sequence(entity.getSequence())
 				.title(entity.getTitle())
 				.content(entity.getContent())
 				.build();

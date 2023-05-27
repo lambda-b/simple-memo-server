@@ -13,9 +13,6 @@ public class Memo {
 	/** メモID */
 	private final String memoId;
 
-	/** 順番 */
-	private final long sequence;
-
 	/** タイトル */
 	private final String title;
 

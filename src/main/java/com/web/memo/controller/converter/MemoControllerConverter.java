@@ -23,7 +23,6 @@ public final class MemoControllerConverter {
 	public static MemoApiOut toOut(final Memo memo) {
 		return MemoApiOut.builder()
 				.memoId(memo.getMemoId())
-				.sequence(memo.getSequence())
 				.title(memo.getTitle())
 				.content(memo.getContent())
 				.build();
