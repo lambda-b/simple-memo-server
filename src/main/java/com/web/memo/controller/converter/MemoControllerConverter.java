@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.web.memo.domain.Memo;
+import com.web.memo.dto.api.in.MemoApiIn;
 import com.web.memo.dto.api.out.MemoApiOut;
 
 import lombok.AccessLevel;
@@ -35,7 +36,25 @@ public final class MemoControllerConverter {
 	 */
 	public static List<MemoApiOut> toOut(final List<Memo> memos) {
 		return memos.stream()
-				.map(memo -> toOut(memo))
+				.map(MemoControllerConverter::toOut)
+				.collect(Collectors.toList());
+	}
+
+	public static Memo toMemo(final MemoApiIn in) {
+		return Memo.builder()
+				.memoId(in.getMemoId())
+				.title(in.getTitle())
+				.content(in.getContent())
+				.build();
+	}
+	/**
+	 * 変換メソッド
+	 * @param in
+	 * @return memo
+	 */
+	public static List<Memo> toMemo(final List<MemoApiIn> in) {
+		return in.stream()
+				.map(MemoControllerConverter::toMemo)
 				.collect(Collectors.toList());
 	}
 }
