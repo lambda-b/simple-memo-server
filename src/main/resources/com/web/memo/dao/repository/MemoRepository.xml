@@ -6,4 +6,35 @@
 	<select id="findAll" resultType="MemoEntity">
 		SELECT * FROM memos ORDER BY sequence;
 	</select>
+	
+	<insert id="saveAll" parameterType="java.util.List">
+		INSERT INTO memos
+			(memo_id, sequence, user_id, title, content, update_timestamp)
+		VALUES
+		<foreach collection="list" item="memo" separator=",">
+			(
+				#{memo.memoId, jdbcType=VARCHAR},
+				#{memo.sequence, jdbcType=BIGINT},
+				#{memo.userId, jdbcType=VARCHAR},
+				#{memo.title, jdbcType=VARCHAR},
+				#{memo.content, jdbcType=VARCHAR},
+				#{memo.updateTimestamp, jdbcType=TIMESTAMP}
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+			sequence = VALUES(sequence),
+			user_id = VALUES(user_id),
+			title = VALUES(title),
+			content = VALUES(content),
+			update_timestamp = VALUES(update_timestamp)
+	</insert>
+	
+	<delete id="deleteAll" parameterType="java.util.List">
+		DELETE FROM memos
+		WHERE
+			memo_id IN
+		<foreach collection="list" item="memo" open="(" separator="," close=")">
+			#{memo.memoId, jdbcType=VARCHAR}
+		</foreach>
+	</delete>
 </mapper>

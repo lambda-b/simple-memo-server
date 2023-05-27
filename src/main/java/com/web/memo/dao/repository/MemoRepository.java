@@ -14,4 +14,16 @@ public interface MemoRepository {
 	 * @return メモリスト
 	 */
 	List<MemoEntity> findAll();
+
+	/**
+	 * DBに保存する
+	 * @param メモリスト
+	 */
+	void saveAll(List<MemoEntity> memoList);
+
+	/**
+	 * DBのメモを削除する (物理削除)
+	 * @param memoList 削除対象のメモリスト
+	 */
+	void deleteAll(List<MemoEntity> memoList);
 }
