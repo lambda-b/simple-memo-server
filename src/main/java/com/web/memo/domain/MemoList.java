@@ -7,12 +7,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * MemoListのドメイン
  */
-@Getter
 @AllArgsConstructor
 public class MemoList {
 
@@ -48,7 +46,7 @@ public class MemoList {
 				.collect(Collectors.toSet());
 
 		return registeredMemos.stream()
-				.filter(memo -> memoIdSet.contains(memo.getMemoId()))
+				.filter(memo -> !memoIdSet.contains(memo.getMemoId()))
 				.collect(Collectors.toList());
 
 	}
