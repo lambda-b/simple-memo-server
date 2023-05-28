@@ -1,7 +1,10 @@
 package com.web.memo.service;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -22,6 +25,9 @@ public class MemoService {
 
 	/** レポジトリ */
 	private final MemoRepository repository;
+
+	/** logger */
+	private final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/**
 	 * すべてのメモを返却
@@ -46,11 +52,13 @@ public class MemoService {
 		}
 
 		if (!CollectionUtils.isEmpty(memos)) {
+			logger.info("save data");
 			repository.saveAll(MemoConverter.toEntity(memos));
 		}
 
 		final List<Memo> deletions = memoList.getDeletions(dbMemos);
 		if (!CollectionUtils.isEmpty(deletions)) {
+			logger.info("delete data");
 			repository.deleteAll(MemoConverter.toEntity(deletions));
 		}
 	}
