@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 public class DestinationUriBuilder {
 
@@ -17,18 +17,18 @@ public class DestinationUriBuilder {
 	}
 
 	public static Builder builder() {
-		return new Builder(new ArrayList<>());
+		return new Builder();
 	}
 
 	public String path() {
 		return StringUtils.join(uriList, "/");
 	}
 
-	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	@NoArgsConstructor(access = AccessLevel.PRIVATE)
 	public static class Builder {
 
 		/** URIリスト */
-		private final List<String> uriList;
+		private final List<String> uriList = new ArrayList<>();
 
 		public DestinationUriBuilder build() {
 			return new DestinationUriBuilder(this);
@@ -37,13 +37,13 @@ public class DestinationUriBuilder {
 		public Builder company(final String company) {
 			uriList.add("company");
 			uriList.add(company);
-			return new Builder(uriList);
+			return this;
 		}
 
 		public Builder user(final String first, final String family) {
 			uriList.add("name");
 			uriList.add(first + "-" + family);
-			return new Builder(uriList);
+			return this;
 		}
 
 		public Builder customerQuote(final String ask, final String bid) {
@@ -51,7 +51,7 @@ public class DestinationUriBuilder {
 			uriList.add(ask);
 			uriList.add("bid");
 			uriList.add(bid);
-			return new Builder(uriList);
+			return this;
 		}
 
 	}
